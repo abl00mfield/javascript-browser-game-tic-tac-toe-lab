@@ -18,14 +18,14 @@ let tie;     //represents if there is a tie
 /*------------------------ Cached Element References ------------------------*/
 
 const squareEls = document.querySelectorAll('.sqr');
-console.log(squareEls)
+
 const messageEl = document.getElementById('message');
-console.log(messageEl);
+
 const resetBtnEl = document.getElementById('reset');
 
 /*-------------------------------- Functions --------------------------------*/
 
-function init() {
+function init() {  //initialize the game
     board = [
         '', '', '',
         '', '', '',
@@ -42,13 +42,13 @@ function render() {
     updateMessage();
 }
 
-function updateBoard() {
+function updateBoard() {    //update the board displayed on the screen
     board.forEach(function(value, index) {
         squareEls[index].textContent = value;
     });
 }
 
-function updateMessage() {
+function updateMessage() {   //update the message displayed on the screen
     if (winner) {
         messageEl.textContent = `${turn} wins!`;
     } else if (tie) {
@@ -59,36 +59,31 @@ function updateMessage() {
 }
 
 function handleClick(event) {
-    console.log(event.target);
-    const squareIndex = parseInt(event.target.id);
+    const squareIndex = parseInt(event.target.id);  //get the id of the square that was clicked
     if (board[squareIndex] || winner) return;   //immediately return if square is already taken
-    placePiece(squareIndex);
+    placePiece(squareIndex);   //place the piece on the board
     checkForWinner();
     checkForTie();
     switchPlayerTurn();
-    console.log(squareIndex);
-    console.log("tie", tie);
     render();
 }
 
-function placePiece(squareIndex) {
+function placePiece(squareIndex) {   //place the piece on the board
     board[squareIndex] = turn;
-    console.log(board);
     render();
     
 }
 
-function checkForWinner() {
+function checkForWinner() {  //check for winner
     winningCombos.forEach(function (combo) {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
             winner = true;
-            console.log('winner');
         }
     });
     
 }
 
-function checkForTie() {
+function checkForTie() {   //check for tie
     if (winner) return;
     if (board.includes('')) return;
     tie = true;
@@ -102,8 +97,8 @@ function switchPlayerTurn() {
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-document.querySelector('.board').addEventListener('click', handleClick);
-resetBtnEl.addEventListener('click', init);
+document.querySelector('.board').addEventListener('click', handleClick);  //add event listener to the board
+resetBtnEl.addEventListener('click', init);  //add event listener to the reset button
 
 /*--------------------------------- Initialize -------------------------------*/
 init();
