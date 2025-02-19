@@ -1,5 +1,5 @@
 body {
-    background-color: gainsboro;
+    background-color: #fcd7e6;
     /* Use a system font, if none are available use an available sans-sarif */
     font-family: system-ui, sans-serif;
     margin: 0;
@@ -14,17 +14,28 @@ body {
   .board {
     display: flex;
     flex-wrap: wrap;
-    width: 325px;
+    width: 350px;
     margin: 20px auto;
   }
   
   .sqr {
+    display:flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
     aspect-ratio: 1/1;
     border: 3px solid black;
     font-size: 64px;
     background-color: white;
     text-align: center;
-    /* margin: 5px; */
+ 
+  }
+
+  button {
+    font-size: 24px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #EF2B7C;
+    color: white;
   }
   

@@ -4,8 +4,8 @@ const winningCombos = [
     [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical
     [0, 4, 8], [2, 4, 6]             //diagonal
 ];
-
-
+const player1 = '🩷';
+const player2 = '💙';
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board;   //the state of the squares on the board
@@ -31,8 +31,8 @@ function init() {
         '', '', '',
         '', '', ''
     ];
-    turn = 'X';
-    winner = null;
+    turn = player1;
+    winner = false;
     tie = false;
     render();
 }
@@ -96,7 +96,7 @@ function checkForTie() {
 
 function switchPlayerTurn() {
     if (winner || tie) return;  //if there is a winner or tie, do not switch player turn
-    turn = turn === 'X' ? 'O' : 'X';
+    turn = turn === player1 ? player2 : player1;
 }
 
 
@@ -105,19 +105,8 @@ function switchPlayerTurn() {
 document.querySelector('.board').addEventListener('click', handleClick);
 resetBtnEl.addEventListener('click', init);
 
-
-//1) Define the required variables used to track the state of the game.
-
-//2) Store cached element references.
-
-//3) Upon loading, the game state should be initialized, and a function should 
-//   be called to render this game state.
-
-//4) The state of the game should be rendered to the user.
-
-//5) Define the required constants.
-
-//6) Handle a player clicking a square with a `handleClick` function.
-
-//7) Create Reset functionality.
+/*--------------------------------- Initialize -------------------------------*/
 init();
+
+
+
